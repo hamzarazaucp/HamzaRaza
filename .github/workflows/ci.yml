@@ -6,17 +6,14 @@ on:
   pull_request:
     branches:
       - develop
-
 jobs:
   ci-job:
     runs-on: ubuntu-latest
     steps:
       - name: Welcome step
         run: echo "welcome to github actions"
-        
       - name: Checkout repository
         uses: actions/checkout@v4
-        
       - name: Repository Information
         run: |
           echo "Repository Name :${{github.repository}}"
