@@ -2,23 +2,26 @@ name: ci-wf
 on:
   push:
     branches:
-      -develop
-  pull_requests:
+      - develop
+  pull_request:
     branches:
-      -develop
-job:
- ci-job:
-   runs-on: ubuntu-latest
-   steps:
-     -name: Welcome step
-      run:  echo "welcome to github actions"
-     -name: chechout/repository
-      uses: actions/checkout@v4
-     -name: Repository Information
-      run:  |
-        echo "Repository Name :${{github.repository}}"
-        echo "Type of events :${{github.event_name}}"
-        git -v
-        git branch
-        git log
-        git config --local --list
+      - develop
+
+jobs:
+  ci-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Welcome step
+        run: echo "welcome to github actions"
+        
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Repository Information
+        run: |
+          echo "Repository Name :${{github.repository}}"
+          echo "Type of events :${{github.event_name}}"
+          git --version
+          git branch
+          git log --oneline
+          git config --local --list
